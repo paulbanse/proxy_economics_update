@@ -38,3 +38,4 @@ Fig. S4 was produced by running code as in S3 but for 1000 time steps and p=0.9
 
 
 # proxy_economics_update
+# proxy_economics_update
