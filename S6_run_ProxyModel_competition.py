@@ -193,6 +193,7 @@ def showAgentDynamics(agentdata):
         f1, ax_array = plt.subplots(1, columns, figsize=(8, 2))
     f1.subplots_adjust(hspace=.3, wspace=.3, left=0.1, right=0.9)
     cbar_ax = f1.add_axes([0.92, 0.15, 0.03, 0.5])
+    print(agentdata.head())
     cNorm = colors.Normalize(vmin=np.min(agentdata.Effort),
                              vmax=np.max(agentdata.Effort))
 
@@ -210,7 +211,7 @@ def showAgentDynamics(agentdata):
         for row, Step in enumerate(run_data.Step.unique()):
             stepdata = run_data[run_data.Step == Step]
             sortby = 'AgentID'
-            print(image[row],np.array(stepdata.sort_values(sortby)['Effort']))
+            print(image[row],np.array(stepdata.sort_values(sortby)['AgentID']))
             image[row] = np.array(stepdata.sort_values(sortby)['Effort'])
             births[row] = np.array(stepdata.sort_values(sortby)['Genealogy'])
             if Step == max(run_data.Step.unique()):
@@ -567,7 +568,7 @@ def making_DB(L):
 
 modeldata = making_DB(agentdata)
 
-#showAgentDynamics(modeldata)
+showAgentDynamics(modeldata)
 #showAgents(modeldata)
 #showModelDynamics(modeldata)
 showModel(modeldata)
