@@ -67,7 +67,8 @@ class ProxyAgent(Agent):
     - step agents (optimize effort/practice to maximize utility)
     """
     def __init__(self, unique_id, model):
-        super().__init__(model)
+        #test
+        super().__init__(unique_id, model)
         self.practice = np.random.uniform(0, self.model.goal_angle)
         # self.practice = self.model.goal_angle
         self.talent = np.random.normal(10, self.model.talent_sd)
@@ -226,7 +227,7 @@ class ProxyModel(Model):
         self.goal_angle = goal_angle
         self.max_steps = max_steps
         self.steps = 0
-        #super().__init__(seed=seed)
+        super().__init__(seed=1)
         
         ''' Create agents on the grid '''
         for i in range(self.num_agents):
@@ -324,10 +325,10 @@ class ProxyModel(Model):
 
     def step(self):
         ''' adjust effort levels in random order '''
-
-
-        #print(len(self.agents),self.steps)
         self.datacollector.collect(self) #tried to make smart data collection but that would mean changing batchrunner
         self.agents.shuffle_do("step")
         self.kill_and_replace()
         self.steps += 1
+        if self.steps >= self.max_steps:
+            self.running = False
+

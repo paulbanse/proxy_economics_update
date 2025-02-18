@@ -52,7 +52,7 @@ parameters = dict(parameters, **variable_parameters)
 print(parameters)
 
 agentdata = batch_run(pm1.ProxyModel, parameters, iterations=1, max_steps=finalStep, data_collection_period = 10)
-
+data_collect_interval = parameters["data_collect_interval"]
 
 print('model runs complete')
 
