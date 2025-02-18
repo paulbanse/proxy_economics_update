@@ -325,10 +325,10 @@ class ProxyModel(Model):
 
     def step(self):
         ''' adjust effort levels in random order '''
-
         self.datacollector.collect(self) #tried to make smart data collection but that would mean changing batchrunner
         self.agents.shuffle_do("step")
         self.kill_and_replace()
         self.steps += 1
         if self.steps >= self.max_steps:
             self.running = False
+
